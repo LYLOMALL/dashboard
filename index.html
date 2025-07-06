@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: none;
+    }
+    .error {
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Check Your Application</h2>
+
+  <input type="text" id="name" placeholder="Name" required>
+  <input type="text" id="lastname" placeholder="Lastname" required>
+  <input type="date" id="birthdate" placeholder="Birthdate" required>
+  <input type="text" id="phone" placeholder="Phone Number" required>
+  <input type="text" id="ceu" placeholder="CEU Number" required>
+  <input type="text" id="passport" placeholder="Passport Number" required>
+  <input type="text" id="nationality_id" placeholder="Nationality ID" required>
+  <input type="text" id="case_number" placeholder="Case Number" required>
+
+  <p class="error" id="error-msg">❌ No matching data found.</p>
+
+  <button id="showResult">✅ Show Final Result</button>
+
+  <script>
+    let matchedLink = null;
+
+    async function fetchData() {
+      const response = await fetch("data.json");
+      return await response.json();
+    }
+
+    async function validateForm() {
+      const data = await fetchData();
+
+      const name = document.getElementById("name").value.trim();
+      const lastname = document.getElementById("lastname").value.trim();
+      const birthdate = document.getElementById("birthdate").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const ceu = document.getElementById("ceu").value.trim();
+      const passport = document.getElementById("passport").value.trim();
+      const nationality_id = document.getElementById("nationality_id").value.trim();
+      const case_number = document.getElementById("case_number").value.trim();
+
+      const match = data.find(item =>
+        item.name === name &&
+        item.lastname === lastname &&
+        item.birthdate === birthdate &&
+        item.phone === phone &&
+        item.ceu === ceu &&
+        item.passport === passport &&
+        item.nationality_id === nationality_id &&
+        item.case_number === case_number
+      );
+
+      const button = document.getElementById("showResult");
+      const error = document.getElementById("error-msg");
+
+      if (match) {
+        matchedLink = match.link;
+        button.style.display = "block";
+        error.style.display = "none";
+      } else {
+        matchedLink = null;
+        button.style.display = "none";
+        error.style.display = "block";
+      }
+    }
+
+    document.querySelectorAll("input").forEach(input => {
+      input.addEventListener("input", validateForm);
+    });
+
+    document.getElementById("showResult").addEventListener("click", () => {
+      if (matchedLink) {
+        window.location.href = matchedLink;
+      }
+    });
+  </script>
+
+</body>
+</html>
