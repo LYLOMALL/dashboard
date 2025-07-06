@@ -2,105 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Form Validation</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      max-width: 500px;
-      margin: auto;
-    }
-    input {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-    }
-    button {
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      display: none;
-    }
-    .error {
-      color: red;
-      display: none;
-    }
-  </style>
+  <title>Visa Application Tracker – Embassy of Australia</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h2>Check Your Application</h2>
+  <h2>Visa Application Tracker</h2>
 
-  <input type="text" id="name" placeholder="Name" required>
-  <input type="text" id="lastname" placeholder="Lastname" required>
-  <input type="date" id="birthdate" placeholder="Birthdate" required>
-  <input type="text" id="phone" placeholder="Phone Number" required>
-  <input type="text" id="ceu" placeholder="CEU Number" required>
-  <input type="text" id="passport" placeholder="Passport Number" required>
-  <input type="text" id="nationality_id" placeholder="Nationality ID" required>
-  <input type="text" id="case_number" placeholder="Case Number" required>
+  <form id="application-form">
+    <label for="name">First Name</label>
+    <input type="text" id="name">
 
-  <p class="error" id="error-msg">❌ No matching data found.</p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname">
 
-  <button id="showResult">✅ Show Final Result</button>
+    <label for="birthdate">Date of Birth</label>
+    <input type="date" id="birthdate">
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone">
+
+    <label for="ceu">CEU Number</label>
+    <input type="text" id="ceu">
+
+    <label for="passport">Passport Number</label>
+    <input type="text" id="passport">
+
+    <label for="nationality_id">Nationality ID</label>
+    <input type="text" id="nationality_id">
+
+    <label for="case_number">Case Number</label>
+    <input type="text" id="case_number">
+
+    <p id="error-msg">❌ No matching application found.</p>
+    <button id="trackBtn" type="button">🔍 Track Application</button>
+  </form>
+
+  <div id="info-box">
+    <h4>Application Details</h4>
+    <table>
+      <tbody>
+        <tr><td><strong>Full Name:</strong></td><td id="full-name"></td></tr>
+        <tr><td><strong>Registration Date:</strong></td><td id="reg-date"></td></tr>
+        <tr><td><strong>Accept Number:</strong></td><td id="accept-number"></td></tr>
+        <tr><td><strong>Case Number:</strong></td><td id="case-num"></td></tr>
+        <tr><td><strong>Interview Date:</strong></td><td id="interview-date"></td></tr>
+        <tr><td><strong>Family Members:</strong></td><td id="family-list"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <p>Embassy of Australia – Kabul, Afghanistan</p>
+  </footer>
 
   <script>
-    let matchedLink = null;
+    const trackBtn = document.getElementById("trackBtn");
+    const inputs = document.querySelectorAll("input");
+    const errorMsg = document.getElementById("error-msg");
+    const infoBox = document.getElementById("info-box");
 
-    async function fetchData() {
-      const response = await fetch("data.json");
-      return await response.json();
-    }
+    let dataSet = [];
 
-    async function validateForm() {
-      const data = await fetchData();
+    // بارگذاری داده‌ها از data.json
+    fetch("data.json")
+      .then(res => res.json())
+      .then(data => dataSet = data);
 
-      const name = document.getElementById("name").value.trim();
-      const lastname = document.getElementById("lastname").value.trim();
-      const birthdate = document.getElementById("birthdate").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const ceu = document.getElementById("ceu").value.trim();
-      const passport = document.getElementById("passport").value.trim();
-      const nationality_id = document.getElementById("nationality_id").value.trim();
-      const case_number = document.getElementById("case_number").value.trim();
-
-      const match = data.find(item =>
-        item.name === name &&
-        item.lastname === lastname &&
-        item.birthdate === birthdate &&
-        item.phone === phone &&
-        item.ceu === ceu &&
-        item.passport === passport &&
-        item.nationality_id === nationality_id &&
-        item.case_number === case_number
-      );
-
-      const button = document.getElementById("showResult");
-      const error = document.getElementById("error-msg");
-
-      if (match) {
-        matchedLink = match.link;
-        button.style.display = "block";
-        error.style.display = "none";
-      } else {
-        matchedLink = null;
-        button.style.display = "none";
-        error.style.display = "block";
-      }
-    }
-
-    document.querySelectorAll("input").forEach(input => {
-      input.addEventListener("input", validateForm);
+    // بررسی تکمیل تمام فیلدها
+    inputs.forEach(input => {
+      input.addEventListener("input", () => {
+        const allFilled = [...inputs].every(inp => inp.value.trim() !== "");
+        trackBtn.style.display = allFilled ? "block" : "none";
+      });
     });
 
-    document.getElementById("showResult").addEventListener("click", () => {
-      if (matchedLink) {
-        window.location.href = matchedLink;
+    // بررسی اطلاعات هنگام کلیک
+    trackBtn.addEventListener("click", () => {
+      const userInput = {
+        name: document.getElementById("name").value.trim(),
+        lastname: document.getElementById("lastname").value.trim(),
+        birthdate: document.getElementById("birthdate").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        ceu: document.getElementById("ceu").value.trim(),
+        passport: document.getElementById("passport").value.trim(),
+        nationality_id: document.getElementById("nationality_id").value.trim(),
+        case_number: document.getElementById("case_number").value.trim()
+      };
+
+      const match = dataSet.find(person =>
+        person.name === userInput.name &&
+        person.lastname === userInput.lastname &&
+        person.birthdate === userInput.birthdate &&
+        person.phone === userInput.phone &&
+        person.ceu === userInput.ceu &&
+        person.passport === userInput.passport &&
+        person.nationality_id === userInput.nationality_id &&
+        person.case_number === userInput.case_number
+      );
+
+      if (match) {
+        errorMsg.style.display = "none";
+        infoBox.style.display = "block";
+
+        document.getElementById("full-name").innerText = `${match.name} ${match.lastname}`;
+        document.getElementById("reg-date").innerText = match.registration_date;
+        document.getElementById("accept-number").innerText = match.accept_number;
+        document.getElementById("case-num").innerText = match.case_number;
+        document.getElementById("interview-date").innerText = match.interview_date;
+        document.getElementById("family-list").innerHTML = match.family_members.map(member => 
+          `${member.name} (${member.relation})`
+        ).join("<br>");
+
+      } else {
+        infoBox.style.display = "none";
+        errorMsg.style.display = "block";
       }
     });
   </script>
-
 </body>
 </html>
