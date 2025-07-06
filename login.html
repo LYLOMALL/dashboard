@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Official Login – Embassy Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Login – Embassy of Australia</h2>
+
+  <form id="login-form">
+    <label for="username">Username</label>
+    <input type="text" id="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" required>
+
+    <p id="error-msg">❌ Invalid username or password.</p>
+    <button type="submit">Login</button>
+  </form>
+
+  <footer>
+    <p>Embassy of Australia – Kabul, Afghanistan</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("login-form");
+    const errorMsg = document.getElementById("error-msg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      fetch("data.json")
+        .then(res => res.json())
+        .then(users => {
+          const match = users.find(u => u.username === username && u.password === password);
+          if (match) {
+            errorMsg.style.display = "none";
+            window.location.href = "index.html"; // Redirect after login
+          } else {
+            errorMsg.style.display = "block";
+          }
+        });
+    });
+  </script>
+
+</body>
+</html>
