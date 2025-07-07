@@ -49,13 +49,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 );
 
                 if (matchedUser) {
-                    resultMessage.textContent = matchedUser.message;
+                    const resultText = document.getElementById('result-text');
+                    resultText.textContent = matchedUser.message;
                     resultMessage.style.display = 'block';
+
+                    const passportImage = document.getElementById('passport-image');
+                    passportImage.src = matchedUser.image; // آدرس تصویر پاسپورت رو از فایل JSON دریافت کنید
+                    passportImage.style.display = 'block'; // نمایش تصویر
+
                     hideInputs();
 
                     setTimeout(function() {
                         resetForm();
-                    }, 60000); // 1 minute
+                    }, 300000); // 5 minutes
                 } else {
                     resultMessage.textContent = 'اطلاعات شما مطابقت ندارد.';
                     resultMessage.style.display = 'block';
@@ -82,5 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         submitButton.classList.remove('hidden');
         resultMessage.style.display = 'none';
+
+        // پنهان کردن تصویر هنگام ریست شدن فرم
+        const passportImage = document.getElementById('passport-image');
+        passportImage.style.display = 'none';
+        passportImage.src = "";
     }
 });
