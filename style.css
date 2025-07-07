@@ -1,126 +1,9 @@
-/* General styles */
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f1f4f9;
-  color: #212529;
-  padding: 40px;
-  max-width: 700px;
-  margin: auto;
+table {
+  font-size: 14px;
 }
 
-h2 {
-  color: #003366;
-  border-bottom: 2px solid #d4af37;
-  padding-bottom: 10px;
-  margin-bottom: 30px;
-}
-
-/* Form styling */
-form {
-  background: white;
-  border: 1px solid #ccc;
-  border-left: 6px solid #003366;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #003366;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 18px;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  font-size: 15px;
-}
-
-button {
-  padding: 12px 24px;
-  background-color: #003366;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 16px;
-  display: none;
-  transition: background-color 0.2s ease-in-out;
-}
-
-button:hover {
-  background-color: #002752;
-}
-
-/* Error message */
-#error-msg {
-  color: red;
-  font-weight: bold;
-  display: none;
-  margin-bottom: 10px;
-}
-
-/* Result box styling */
 #info-box {
-  display: none;
-  background-color: #fdfdfd;
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin-top: 25px;
-  border-left: 5px solid #003366;
-  border-radius: 5px;
-}
-
-#info-box h4 {
-  color: #003366;
-  margin-bottom: 12px;
-}
-
-#info-box ul {
-  padding-left: 20px;
-  list-style: disc;
-}
-
-/* Footer style */
-footer {
-  text-align: center;
-  color: #777;
-  font-size: 0.85rem;
-  margin-top: 50px;
-}
-
-footer img {
-  width: 80px;
-  margin-top: 10px;
-}
-/* ======= Responsive Design for Tablets and Mobiles ======= */
-
-@media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
-
-  form {
-    padding: 20px;
-  }
-
-  input, button {
-    font-size: 16px;
-  }
-
-  table {
-    font-size: 14px;
-  }
-
-  #info-box {
-    padding: 15px;
-  }
+  padding: 15px;
 }
 
 @media (max-width: 480px) {
@@ -157,3 +40,20 @@ footer img {
   }
 }
 
+/* --- Watermark Image --- */
+body::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background-image: url('watermark.png'); /* نام فایل واترمارک */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 999;
+}
