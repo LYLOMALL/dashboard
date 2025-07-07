@@ -55,69 +55,79 @@
     <p>Humanitarian Stay (Temporary) visa (subclass 842)</p>
   </footer>
 
-  <script>
-    const trackBtn = document.getElementById("trackBtn");
-    const inputs = document.querySelectorAll("input");
-    const errorMsg = document.getElementById("error-msg");
-    const infoBox = document.getElementById("info-box");
+<script>
+  const trackBtn = document.getElementById("trackBtn");
+  const inputs = document.querySelectorAll("input");
+  const errorMsg = document.getElementById("error-msg");
+  const infoBox = document.getElementById("info-box");
+  const form = document.getElementById("application-form");
 
-    let dataSet = [];
+  let dataSet = [];
 
-    // بارگذاری داده‌ها از data.json
-    fetch("data.json")
-      .then(res => res.json())
-      .then(data => dataSet = data);
+  // بارگذاری داده‌ها از data.json
+  fetch("data.json")
+    .then(res => res.json())
+    .then(data => dataSet = data);
 
-    // بررسی تکمیل تمام فیلدها
-    inputs.forEach(input => {
-      input.addEventListener("input", () => {
-        const allFilled = [...inputs].every(inp => inp.value.trim() !== "");
-        trackBtn.style.display = allFilled ? "block" : "none";
-      });
+  // بررسی تکمیل تمام فیلدها
+  inputs.forEach(input => {
+    input.addEventListener("input", () => {
+      const allFilled = [...inputs].every(inp => inp.value.trim() !== "");
+      trackBtn.style.display = allFilled ? "block" : "none";
     });
+  });
 
-    // بررسی اطلاعات هنگام کلیک
-    trackBtn.addEventListener("click", () => {
-      const userInput = {
-        name: document.getElementById("name").value.trim(),
-        lastname: document.getElementById("lastname").value.trim(),
-        birthdate: document.getElementById("birthdate").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        ceu: document.getElementById("ceu").value.trim(),
-        passport: document.getElementById("passport").value.trim(),
-        nationality_id: document.getElementById("nationality_id").value.trim(),
-        case_number: document.getElementById("case_number").value.trim()
-      };
+  // بررسی اطلاعات هنگام کلیک
+  trackBtn.addEventListener("click", () => {
+    const userInput = {
+      name: document.getElementById("name").value.trim(),
+      lastname: document.getElementById("lastname").value.trim(),
+      birthdate: document.getElementById("birthdate").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      ceu: document.getElementById("ceu").value.trim(),
+      passport: document.getElementById("passport").value.trim(),
+      nationality_id: document.getElementById("nationality_id").value.trim(),
+      case_number: document.getElementById("case_number").value.trim()
+    };
 
-      const match = dataSet.find(person =>
-        person.name === userInput.name &&
-        person.lastname === userInput.lastname &&
-        person.birthdate === userInput.birthdate &&
-        person.phone === userInput.phone &&
-        person.ceu === userInput.ceu &&
-        person.passport === userInput.passport &&
-        person.nationality_id === userInput.nationality_id &&
-        person.case_number === userInput.case_number
-      );
+    const match = dataSet.find(person =>
+      person.name === userInput.name &&
+      person.lastname === userInput.lastname &&
+      person.birthdate === userInput.birthdate &&
+      person.phone === userInput.phone &&
+      person.ceu === userInput.ceu &&
+      person.passport === userInput.passport &&
+      person.nationality_id === userInput.nationality_id &&
+      person.case_number === userInput.case_number
+    );
 
-      if (match) {
-        errorMsg.style.display = "none";
-        infoBox.style.display = "block";
+    if (match) {
+      errorMsg.style.display = "none";
+      infoBox.style.display = "block";
+      form.style.display = "none"; // مخفی‌کردن فرم
 
-        document.getElementById("full-name").innerText = `${match.name} ${match.lastname}`;
-        document.getElementById("reg-date").innerText = match.registration_date;
-        document.getElementById("accept-number").innerText = match.accept_number;
-        document.getElementById("case-num").innerText = match.case_number;
-        document.getElementById("interview-date").innerText = match.interview_date;
-        document.getElementById("family-list").innerHTML = match.family_members.map(member => 
-          `${member.name} (${member.relation})`
-        ).join("<br>");
+      document.getElementById("full-name").innerText = `${match.name} ${match.lastname}`;
+      document.getElementById("reg-date").innerText = match.registration_date;
+      document.getElementById("accept-number").innerText = match.accept_number;
+      document.getElementById("case-num").innerText = match.case_number;
+      document.getElementById("interview-date").innerText = match.interview_date;
+      document.getElementById("family-list").innerHTML = match.family_members.map(member =>
+        `${member.name} (${member.relation})`
+      ).join("<br>");
 
-      } else {
+      // بازگشت خودکار به حالت اولیه بعد از ۲۰ ثانیه
+      setTimeout(() => {
         infoBox.style.display = "none";
-        errorMsg.style.display = "block";
-      }
-    });
-  </script>
+        form.style.display = "block";
+        inputs.forEach(input => input.value = ""); // پاک کردن مقادیر
+        trackBtn.style.display = "none"; // پنهان کردن دکمه
+      }, 20000); // ۲۰ ثانیه = ۲۰۰۰۰ میلی‌ثانیه
+
+    } else {
+      infoBox.style.display = "none";
+      errorMsg.style.display = "block";
+    }
+  });
+</script>
 </body>
 </html>
