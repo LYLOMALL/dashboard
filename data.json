@@ -5,8 +5,7 @@
     "birthDate": "1990-01-01",
     "passportNumber": "1234567",
     "cuNumber": "CU123",
-    "message": "خوش آمدید جان دوه! اطلاعات شما تایید شد.",
-    "image": "john_doe_passport.jpg"
+    "message": "خوش آمدید جان دوه! اطلاعات شما تایید شد."
   },
   {
     "name": "جین",
@@ -14,7 +13,6 @@
     "birthDate": "1992-02-02",
     "passportNumber": "7654321",
     "cuNumber": "CU456",
-    "message": "سلام جین اسمیت! اطلاعات شما درست است.",
-    "image": "jane_smith_passport.jpg"
+    "message": "سلام جین اسمیت! اطلاعات شما درست است."
   }
 ]
