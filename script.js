@@ -53,9 +53,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     resultText.textContent = matchedUser.message;
                     resultMessage.style.display = 'block';
 
-                    const passportImage = document.getElementById('passport-image');
-                    passportImage.src = matchedUser.image; // آدرس تصویر پاسپورت رو از فایل JSON دریافت کنید
-                    passportImage.style.display = 'block'; // نمایش تصویر
+                    // ساخت جدول
+                    const table = document.getElementById('info-table');
+                    table.innerHTML = ''; // پاک کردن جدول قبلی
+
+                    // اضافه کردن هدر جدول
+                    let headerRow = table.insertRow();
+                    let headers = ['اسم', 'تخلص', 'تاریخ تولد', 'نمبر پاسپورت', 'نمبر سی یو'];
+                    headers.forEach(headerText => {
+                        let header = document.createElement('th');
+                        header.textContent = headerText;
+                        headerRow.appendChild(header);
+                    });
+
+                    // اضافه کردن ردیف اطلاعات
+                    let dataRow = table.insertRow();
+                    let dataValues = [matchedUser.name, matchedUser.lastName, matchedUser.birthDate, matchedUser.passportNumber, matchedUser.cuNumber];
+                    dataValues.forEach(dataValue => {
+                        let cell = document.createElement('td');
+                        cell.textContent = dataValue;
+                        dataRow.appendChild(cell);
+                    });
 
                     hideInputs();
 
@@ -89,9 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.classList.remove('hidden');
         resultMessage.style.display = 'none';
 
-        // پنهان کردن تصویر هنگام ریست شدن فرم
-        const passportImage = document.getElementById('passport-image');
-        passportImage.style.display = 'none';
-        passportImage.src = "";
+        // پاک کردن جدول هنگام ریست شدن فرم
+        const table = document.getElementById('info-table');
+        table.innerHTML = '';
     }
 });
