@@ -78,6 +78,28 @@
         .hidden {
             display: none;
         }
+
+        /* استایل برای جدول */
+        #info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #info-table th, #info-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #info-table th {
+            background-color: #f2f2f2;
+        }
+
+        #signature {
+            margin-top: 20px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -96,8 +118,11 @@
         </div>
 
         <div id="result-message">
-            <img id="passport-image" src="" alt="Passport Image" style="width: 150px; height: 200px; display: none;">
             <p id="result-text"></p>
+            <table id="info-table">
+                <!-- جدول در اینجا با جاوااسکریپت پر میشه -->
+            </table>
+            <div id="signature">امضا: ___________</div>
         </div>
     </div>
 
