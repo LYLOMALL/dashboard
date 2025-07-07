@@ -1,59 +1,75 @@
-table {
-  font-size: 14px;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Tahoma", "Segoe UI", sans-serif;
+  line-height: 1.8;
+  background-color: #ffffff;
+  position: relative;
+  direction: rtl;
 }
 
-#info-box {
-  padding: 15px;
-}
-
-@media (max-width: 480px) {
-  h2 {
-    font-size: 20px;
-    text-align: center;
-  }
-
-  input {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  button {
-    width: 100%;
-    padding: 12px;
-    font-size: 15px;
-  }
-
-  table {
-    width: 100%;
-    word-break: break-word;
-  }
-
-  td {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  td strong {
-    display: inline-block;
-    width: 100%;
-  }
-}
-
-/* --- Watermark Image --- */
+/* واترمارک پس‌زمینه */
 body::after {
   content: "";
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 300px;
-  background-image: url('watermark.png'); /* نام فایل واترمارک */
+  width: 400px;
+  height: 400px;
+  background-image: url('watermark.png'); /* تصویر واترمارک */
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.1;
+  opacity: 0.07;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 999;
+  z-index: 0;
+}
+
+/* کانتینر کلی */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* هدر بالا با لوگو */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #003366;
+}
+
+/* محتوای متن اصلی */
+.content {
+  font-size: 16px;
+  color: #333;
+  text-align: justify;
+  padding: 10px 0;
+}
+
+/* امضا در پایین */
+.signature {
+  margin-top: 60px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.signature p {
+  margin: 5px 0;
 }
