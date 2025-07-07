@@ -1,133 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Visa Application Tracker – Embassy of Australia</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <img src="logo.png" alt="Logo">
+        <h1>Application Tracker</h1>
+    </header>
 
-  <h2>Australia Visa Application Tracker</h2>
+    <div class="container">
+        <div id="form-container">
+            <input type="text" id="firstName" placeholder="First Name">
+            <input type="text" id="lastName" placeholder="Last Name">
+            <input type="text" id="coNumber" placeholder="CO Number">
+            <button id="trackButton">Track Application</button>
+        </div>
+<div id="loading-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
+    <img src="loading.gif" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+</div>
+        <div id="letter-container" style="display: none;">
+            <p id="letter-content"></p>
+        </div>
 
-  <form id="application-form">
-    <label for="name">First Name</label>
-    <input type="text" id="name">
+        <div id="error-message" style="display: none;">
+            <p>Data not found. Please check your information.</p>
+        </div>
+    </div>
 
-    <label for="lastname">Last Name</label>
-    <input type="text" id="lastname">
+    <footer>
+        <p>&copy; 2025 Application Tracker</p>
+    </footer>
 
-    <label for="birthdate">Date of Birth</label>
-    <input type="date" id="birthdate">
-
-    <label for="phone">Phone Number</label>
-    <input type="text" id="phone">
-
-    <label for="ceu">CEU Number</label>
-    <input type="text" id="ceu">
-
-    <label for="passport">Passport Number</label>
-    <input type="text" id="passport">
-
-    <label for="nationality_id">Nationality ID</label>
-    <input type="text" id="nationality_id">
-
-    <label for="case_number">Case Number</label>
-    <input type="text" id="case_number">
-
-    <p id="error-msg">❌ No matching application found.</p>
-    <button id="trackBtn" type="button">🔍 Track Application</button>
-  </form>
-
-  <div id="info-box">
-    <h4>Application Details</h4>
-    <table>
-      <tbody>
-        <tr><td><strong>Full Name:</strong></td><td id="full-name"></td></tr>
-        <tr><td><strong>Registration Date:</strong></td><td id="reg-date"></td></tr>
-        <tr><td><strong>Accept Number:</strong></td><td id="accept-number"></td></tr>
-        <tr><td><strong>Case Number:</strong></td><td id="case-num"></td></tr>
-        <tr><td><strong>Interview Date:</strong></td><td id="interview-date"></td></tr>
-        <tr><td><strong>Family Members:</strong></td><td id="family-list"></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <footer>
-    <p>Humanitarian Stay (Temporary) visa (subclass 842)</p>
-  </footer>
-
-<script>
-  const trackBtn = document.getElementById("trackBtn");
-  const inputs = document.querySelectorAll("input");
-  const errorMsg = document.getElementById("error-msg");
-  const infoBox = document.getElementById("info-box");
-  const form = document.getElementById("application-form");
-
-  let dataSet = [];
-
-  // بارگذاری داده‌ها از data.json
-  fetch("data.json")
-    .then(res => res.json())
-    .then(data => dataSet = data);
-
-  // بررسی تکمیل تمام فیلدها
-  inputs.forEach(input => {
-    input.addEventListener("input", () => {
-      const allFilled = [...inputs].every(inp => inp.value.trim() !== "");
-      trackBtn.style.display = allFilled ? "block" : "none";
-    });
-  });
-
-  // بررسی اطلاعات هنگام کلیک
-  trackBtn.addEventListener("click", () => {
-    const userInput = {
-      name: document.getElementById("name").value.trim(),
-      lastname: document.getElementById("lastname").value.trim(),
-      birthdate: document.getElementById("birthdate").value.trim(),
-      phone: document.getElementById("phone").value.trim(),
-      ceu: document.getElementById("ceu").value.trim(),
-      passport: document.getElementById("passport").value.trim(),
-      nationality_id: document.getElementById("nationality_id").value.trim(),
-      case_number: document.getElementById("case_number").value.trim()
-    };
-
-    const match = dataSet.find(person =>
-      person.name === userInput.name &&
-      person.lastname === userInput.lastname &&
-      person.birthdate === userInput.birthdate &&
-      person.phone === userInput.phone &&
-      person.ceu === userInput.ceu &&
-      person.passport === userInput.passport &&
-      person.nationality_id === userInput.nationality_id &&
-      person.case_number === userInput.case_number
-    );
-
-    if (match) {
-      errorMsg.style.display = "none";
-      infoBox.style.display = "block";
-      form.style.display = "none"; // مخفی‌کردن فرم
-
-      document.getElementById("full-name").innerText = `${match.name} ${match.lastname}`;
-      document.getElementById("reg-date").innerText = match.registration_date;
-      document.getElementById("accept-number").innerText = match.accept_number;
-      document.getElementById("case-num").innerText = match.case_number;
-      document.getElementById("interview-date").innerText = match.interview_date;
-      document.getElementById("family-list").innerHTML = match.family_members.map(member =>
-        `${member.name} (${member.relation})`
-      ).join("<br>");
-
-      // بازگشت خودکار به حالت اولیه بعد از ۲۰ ثانیه
-      setTimeout(() => {
-        infoBox.style.display = "none";
-        form.style.display = "block";
-        inputs.forEach(input => input.value = ""); // پاک کردن مقادیر
-        trackBtn.style.display = "none"; // پنهان کردن دکمه
-      }, 20000); // ۲۰ ثانیه = ۲۰۰۰۰ میلی‌ثانیه
-
-    } else {
-      infoBox.style.display = "none";
-      errorMsg.style.display = "block";
-    }
-  });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
