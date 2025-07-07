@@ -1,59 +1,14 @@
 [
-  {
-    "name": "Ahmad",
-    "lastname": "Rahimi",
-    "birthdate": "1990-01-15",
-    "phone": "0700123456",
-    "ceu": "CEU1001",
-    "passport": "P1234567",
-    "nationality_id": "AF123456",
-    "case_number": "001122",
-    "link": "https://example.com/results/ahmad",
-
-    "registration_date": "2024-05-01",
-    "accept_number": "ACC987654",
-    "interview_date": "2024-08-15",
-    "family_members": [
-      { "name": "Fatima Rahimi", "relation": "Wife" },
-      { "name": "Ali Rahimi", "relation": "Son" }
-      { "Details": "Subject: Final Approval and Eligibility for Humanitarian Relocation to the Republic of Italy Dear Sir/Madam Following the humanitarian relocation request submitted on March 13, 2025, we hereby inform you that the Government of the Italian Republic has officially approved your application. After comprehensive evaluations and verification of all supporting documentation, your family has been declared eligible for humanitarian relocation to Italy", "relation": "Approved" }
-    ]
-  },
-  {
-    "name": "Zahra",
-    "lastname": "Nazari",
-    "birthdate": "1995-07-21",
-    "phone": "0799876543",
-    "ceu": "CEU2002",
-    "passport": "P7654321",
-    "nationality_id": "AF654321",
-    "case_number": "009988",
-    "link": "https://example.com/results/zahra",
-
-    "registration_date": "2024-06-10",
-    "accept_number": "ACC123456",
-    "interview_date": "2024-09-01",
-    "family_members": [
-      { "name": "Sami Nazari", "relation": "Brother" },
-      { "name": "Lina Nazari", "relation": "Sister" }
-    ]
-  },
-  {
-    "name": "Omid",
-    "lastname": "Hosseini",
-    "birthdate": "1988-03-30",
-    "phone": "0780001122",
-    "ceu": "CEU3003",
-    "passport": "P1112223",
-    "nationality_id": "AF789456",
-    "case_number": "004477",
-    "link": "https://example.com/results/omid",
-
-    "registration_date": "2024-07-02",
-    "accept_number": "ACC456789",
-    "interview_date": "2024-10-12",
-    "family_members": [
-      { "name": "Narges Hosseini", "relation": "Wife" }
-    ]
-  }
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "coNumber": "12345",
+        "letter": "Dear John Doe, your application is approved."
+    },
+    {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "coNumber": "67890",
+        "letter": "Dear Jane Smith, your application is under review."
+    }
 ]
