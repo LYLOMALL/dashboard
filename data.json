@@ -3,14 +3,14 @@
     "fullName": "Ahmad Rahimi",
     "lastName": "Rahimi",
     "passport": "P1234567",
-    "caseNumber": "C0001",
+    "caseNumber": "C001",
     "accessCode": "A1001",
     "dashboardLinks": {
-      "btn1": "https://facebook.com/نتیجه نهایی",
-      "btn2": "https://example.com/uploadPassport",
-      "btn3": "https://example.com/uploadPhoto",
-      "btn4": "https://example.com/confirmation",
-      "btn5": "https://example.com/logout"
+      "btn1": "https://site1.com/result1",
+      "btn2": "https://site1.com/uploadPassport",
+      "btn3": "https://site1.com/uploadPhoto",
+      "btn4": "https://site1.com/confirmation",
+      "btn5": "logout"
     }
   },
   {
@@ -20,11 +20,11 @@
     "caseNumber": "C002",
     "accessCode": "A1002",
     "dashboardLinks": {
-      "btn1": "https://google.com/نتیجه نهایی 2",
-      "btn2": "https://example.com/uploadPassport",
-      "btn3": "https://example.com/uploadPhoto",
-      "btn4": "https://example.com/confirmation",
-      "btn5": "https://example.com/logout"
+      "btn1": "https://site2.com/result2",
+      "btn2": "https://site2.com/uploadPassport",
+      "btn3": "https://site2.com/uploadPhoto",
+      "btn4": "https://site2.com/confirmation",
+      "btn5": "logout"
     }
   }
 ]
