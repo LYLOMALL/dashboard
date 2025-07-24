@@ -1,152 +1,113 @@
 body {
-    font-family: Arial, sans-serif; /* فونت استاندارد و رسمی */
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0; /* پس‌زمینه خاکستری ملایم */
-    color: #333; /* رنگ متن تیره */
+  font-family: 'Tahoma', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
 }
 
-header {
-    background-color: #0047ab; /* آبی تیره برای هدر (رنگ رسمی استرالیا) */
-    color: white; /* رنگ متن سفید برای هدر */
-    text-align: left;
-    padding: 1em 2em;
-    border-bottom: 2px solid #d0d0d0; /* خط جداکننده ضخیم‌تر */
-    display: flex;
-    align-items: center;
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  background: white;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  text-align: center;
 }
 
-header img {
-    height: 40px; /* اندازه لوگو */
-    margin-right: 15px;
+.login-container h2 {
+  margin-bottom: 25px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.7em; /* اندازه فونت عنوان */
-    font-weight: bold; /* وزن فونت بولد */
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.container {
-    width: 80%; /* عرض بیشتر برای تمرکز بر محتوا */
-    margin: 30px auto;
-    padding: 25px;
-    background-color: #ffffff; /* پس‌زمینه سفید */
-    border: 1px solid #d0d0d0; /* حاشیه خاکستری */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* سایه ملایم */
-    border-radius: 0; /* حذف گوشه‌های گرد */
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.login-container button:hover {
+  background-color: #0056b3;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: calc(100% - 16px); /* عرض ورودی‌ها */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 0; /* حذف گوشه‌های گرد */
-    box-sizing: border-box;
-    font-size: 0.9em;
-    transition: border-color 0.3s ease;
+.error-msg {
+  color: red;
+  margin-top: 10px;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-    border-color: #0047ab; /* آبی تیره برای فوکوس */
-    outline: none;
+/* داشبورد */
+
+.dashboard-header, .dashboard-footer {
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
 }
 
-button {
-    background-color: #0047ab; /* آبی تیره برای دکمه */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 0; /* حذف گوشه‌های گرد */
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-    align-self: flex-start;
+.dashboard-container {
+  display: flex;
+  height: calc(100vh - 100px);
 }
 
-button:hover {
-    background-color: #003380; /* آبی تیره‌تر برای هاور */
+.sidebar {
+  width: 220px;
+  background-color: #003366;
+  color: white;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-#letter-container {
-    background-color: #f8f8f8; /* خاکستری روشن برای نامه */
-    padding: 15px;
-    border-radius: 0; /* حذف گوشه‌های گرد */
-    border: 1px solid #e0e0e0;
+.sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: right;
+  cursor: pointer;
+  font-size: 16px;
+  border-bottom: 1px solid #0055aa;
 }
 
-#letter-content {
-    line-height: 1.5;
-    font-size: 0.9em;
+.sidebar button.active, .sidebar button:hover {
+  background-color: #0055aa;
 }
 
-#error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border: 1px solid #f5c6cb;
-    border-radius: 0; /* حذف گوشه‌های گرد */
-    margin-top: 15px;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    margin-top: 30px;
-    border-top: 1px solid #555;
-}
-
-/* Responsive design */
-@media (max-width: 992px) {
-    .container {
-        width: 90%;
-    }
-    header h1 {
-        font-size: 1.5em;
-    }
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
 }
 
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1em;
-    }
-    header img {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-    .container {
-        width: 95%;
-        padding: 20px;
-    }
-    button {
-        width: 100%;
-        align-self: center;
-    }
-}
-
-@media (max-width: 576px) {
-    body {
-        font-size: 12px;
-    }
-    header h1 {
-        font-size: 1.3em;
-    }
-    input[type="text"],
-    button {
-        font-size: 0.8em;
-    }
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+  }
+  .sidebar button {
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid #0055aa;
+    text-align: center;
+  }
 }
