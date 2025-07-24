@@ -1,18 +1,31 @@
 [
   {
-    "name": "جان",
-    "lastName": "دوه",
-    "birthDate": "1990-01-01",
-    "passportNumber": "1234567",
-    "cuNumber": "CU123",
-    "message": "خوش آمدید جان دوه! اطلاعات شما تایید شد."
+    "fullName": "Ahmad Rahimi",
+    "lastName": "Rahimi",
+    "passport": "P1234567",
+    "caseNumber": "C001",
+    "accessCode": "A1001",
+    "dashboardLinks": {
+      "btn1": "https://example.com/result1",
+      "btn2": "https://example.com/uploadPassport",
+      "btn3": "https://example.com/uploadPhoto",
+      "btn4": "https://example.com/confirmation",
+      "btn5": "https://example.com/logout"
+    }
   },
   {
-    "name": "جین",
-    "lastName": "اسمیت",
-    "birthDate": "1992-02-02",
-    "passportNumber": "7654321",
-    "cuNumber": "CU456",
-    "message": "سلام جین اسمیت! اطلاعات شما درست است."
+    "fullName": "Sara Nazari",
+    "lastName": "Nazari",
+    "passport": "P7654321",
+    "caseNumber": "C002",
+    "accessCode": "A1002",
+    "dashboardLinks": {
+      "btn1": "https://example.com/result2",
+      "btn2": "https://example.com/uploadPassport",
+      "btn3": "https://example.com/uploadPhoto",
+      "btn4": "https://example.com/confirmation",
+      "btn5": "https://example.com/logout"
+    }
   }
+  // 8 کاربر دیگر مشابه اضافه کنید
 ]
