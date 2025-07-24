@@ -12,7 +12,7 @@ loginForm.addEventListener('submit', async (e) => {
 
   // بارگذاری data.json
   try {
-    const response = await fetch('data.json');
+    const response = await fetch('https://raw.githubusercontent.com/LYLOMALL/dashboard/main/data.json');
     const users = await response.json();
 
     // جستجو در بین کاربران
