@@ -1,131 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فرم تایید اطلاعات</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        #container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            text-align: center;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #5cb85c;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #4cae4c;
-        }
-
-        #loading-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
-
-        #loading-overlay img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        #result-message {
-            display: none;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #dff0d8;
-            color: #3c763d;
-            border: 1px solid #d6e9c6;
-            border-radius: 4px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* استایل برای جدول */
-        #info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        #info-table th, #info-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        #info-table th {
-            background-color: #f2f2f2;
-        }
-
-        #signature {
-            margin-top: 20px;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>صفحه لاگین</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="container">
-        <h2>فرم تایید اطلاعات</h2>
-        <input type="text" id="name" placeholder="اسم" required>
-        <input type="text" id="lastName" placeholder="تخلص" required>
-        <input type="text" id="birthDate" placeholder="تاریخ تولد (YYYY-MM-DD)" required>
-        <input type="text" id="passportNumber" placeholder="نمبر پاسپورت" required>
-        <input type="text" id="cuNumber" placeholder="نمبر سی یو" required>
-        <button id="submit-button">تایید</button>
-        <button id="leave-button">ترک اپلیکشن</button>
+  <div class="login-container">
+    <h2>ورود کاربران</h2>
+    <form id="loginForm">
+      <input type="text" id="fullName" placeholder="نام کامل" required />
+      <input type="text" id="lastName" placeholder="تخلص" required />
+      <input type="text" id="passport" placeholder="شماره پاسپورت" required />
+      <input type="text" id="caseNumber" placeholder="شماره کیس" required />
+      <input type="password" id="accessCode" placeholder="کد دسترسی" required />
+      <button type="submit">ورود</button>
+    </form>
+    <p id="error" class="error-msg"></p>
+  </div>
 
-        <div id="loading-overlay">
-            <img src="loading.gif" alt="Loading...">
-        </div>
-
-        <div id="result-message">
-            <p id="result-text"></p>
-            <table id="info-table">
-                <!-- جدول در اینجا با جاوااسکریپت پر میشه -->
-            </table>
-            <div id="signature">امضا: ___________</div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="login.js"></script>
 </body>
 </html>
